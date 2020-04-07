@@ -1,0 +1,3 @@
+C:/Users/alekz29/CLionProjects/CW/TA_LR2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/alekz29/CLionProjects/CW/TA_LR2/cmake-build-debug/CMakeFiles/TA_LR2.dir
+C:/Users/alekz29/CLionProjects/CW/TA_LR2/cmake-build-debug/CMakeFiles/edit_cache.dir

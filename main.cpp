@@ -12,14 +12,12 @@ pair<string, string> initializePair();
 void arrayAdd(vector<string> &hashTable, vector<pair<string, string>> &pairVector);
 
 string
-findElement(vector<string> &hashTable, pair<string, string> &myPair, double &averageAccesses,
-            double &averageComparings);
+findElement(vector<string> &hashTable, pair<string, string> &myPair);
 
 void linearPunching(int index, vector<string> &hashTable);
 
-void averageAccessessAndComparings(vector<string> &hashTable, vector<pair<string, string>> myPair);
 
-int SIZE = 20000;
+int SIZE = 100;
 
 int main() {
     vector<string> hashTable(SIZE);
@@ -27,9 +25,9 @@ int main() {
     initializePair();
     arrayAdd(hashTable, pairVector);
     linearPunching(2, hashTable);
-    cout<< "n = "<<SIZE<<endl;
-    cout<< "Searching for "<<pairVector[rand()%pairVector.size()].second<< "in hashTable"<<endl;
-    averageAccessessAndComparings(hashTable, pairVector);
+    cout << "n = " << SIZE << endl;
+    cout << "Searching for " << pairVector[SIZE / 2].second << " in vector" << endl;
+    findElement(hashTable, pairVector[SIZE/2]);
 }
 
 unsigned int jenkins_one_at_a_time_hash(string key) {
@@ -74,8 +72,7 @@ void arrayAdd(vector<string> &hashTable, vector<pair<string, string>> &pairVecto
 }
 
 string
-findElement(vector<string> &hashTable, pair<string, string> &myPair, double &averageAccesses,
-            double &averageComparings) {
+findElement(vector<string> &hashTable, pair<string, string> &myPair) {
     unsigned int hashKey = jenkins_one_at_a_time_hash(myPair.first) % hashTable.size();
     int accesses = 0;
     int comparings = 0;
@@ -94,10 +91,8 @@ findElement(vector<string> &hashTable, pair<string, string> &myPair, double &ave
     }
     comparings++;
     accesses++;
-    averageAccesses += accesses;
-    averageComparings += comparings;
     cout << "Accesses are " << accesses << endl;
-    cout << " Comparings are " << comparings << endl;
+    cout << "Comparings are " << comparings << endl;
     return hashTable[hashKey];
 }
 
@@ -106,13 +101,8 @@ void linearPunching(int index, vector<string> &hashTable) {
     hashTable[index] = "nothing";
 }
 
-void averageAccessessAndComparings(vector<string> &hashTable, vector<pair<string, string>> myPair) {
-    double averageAccesses = 0;
-    double averageComparings = 0;
-    for (int i = 0; i < SIZE - 1; i++) {
-        findElement(hashTable, myPair[i], averageAccesses, averageComparings);
-    }
-    cout << averageAccesses / (SIZE - 1) << endl;
-    cout << averageComparings / (SIZE - 1) << endl;
-}
+
+
+
+
 
